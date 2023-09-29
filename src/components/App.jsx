@@ -1,7 +1,10 @@
+import { CssBaseline } from "@mui/material";
+//import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <h1>MoviePedia</h1>
+      <CssBaseline />
+      <h1>Movie-Pedia</h1>
     </div>
   );
 }
