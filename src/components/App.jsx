@@ -4,7 +4,7 @@ function App() {
   return (
     <div className="App">
       <CssBaseline />
-      <h1>Movie-Pedia</h1>
+      <h1>MoviePedia</h1>
     </div>
   );
 }
