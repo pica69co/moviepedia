@@ -15,7 +15,9 @@ import { useTheme } from "@mui/material/styles";
 import useStyles from "../styles";
 import { useGetGenresQuery } from "../../services/TMDB";
 import { useDispatch, useSelector } from "react-redux";
-import { selectGenreOrCategory } from "../../features/currentGenorCat";
+import currentGenorCat, {
+  selectGenreOrCategory,
+} from "../../features/currentGenorCat";
 import genreIcons from "../../assets/genres";
 
 const categories = [
@@ -34,9 +36,11 @@ const Sidebar = ({ setMobileOpen }) => {
   const theme = useTheme();
   const classes = useStyles();
   const dispatch = useDispatch();
-  // const { genreOrCategory } = useSelector(selectGenreOrCategory);
+  const { genreIdOrCategoryName } = useSelector(
+    (state) => state.currentGenreOrCategory
+  );
   const { data, isFetching } = useGetGenresQuery();
-
+  console.log(genreIdOrCategoryName);
   useEffect(() => {}, []);
   return (
     <>
