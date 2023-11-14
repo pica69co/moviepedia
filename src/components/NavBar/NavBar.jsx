@@ -34,7 +34,7 @@ const NavBar = () => {
               color="inherit"
               edge="start"
               style={{ outline: "none" }}
-              onClick={() => {}}
+              onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
               className={classes.menuButton}
             >
               <Menu />
@@ -46,11 +46,9 @@ const NavBar = () => {
           {!isMobile && "Search..."}
           <div>
             {!isAuthenticated ? (
-              <>
-                <Button color="inherit" onClick={() => {}}>
-                  Login &nbsp; <AccountCircle />
-                </Button>
-              </>
+              <Button color="inherit" onClick={() => {}}>
+                Login &nbsp; <AccountCircle />
+              </Button>
             ) : (
               <>
                 <Button
@@ -81,23 +79,23 @@ const NavBar = () => {
               variant="temporary"
               anchor="right"
               open={mobileOpen}
+              onClose={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
               classes={{ paper: classes.drawerPaper }}
               ModalProps={{ keepMounted: true }}
             >
               <Sidebar setMobileOpen={setMobileOpen} />
             </Drawer>
           ) : (
-            <>
-              <Drawer
-                classes={{ paper: classes.drawerPaper }}
-                variant="permanent"
-                open
-              >
-                <Sidebar setMobileOpen={setMobileOpen} />
-              </Drawer>
-            </>
+            <Drawer
+              classes={{ paper: classes.drawerPaper }}
+              variant="permanent"
+              open
+            >
+              <Sidebar setMobileOpen={setMobileOpen} />
+            </Drawer>
           )}
         </nav>
+        º
       </div>
     </>
   );
