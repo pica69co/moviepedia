@@ -15,14 +15,15 @@ import {
   Brightness4,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import useStyles from "./styles";
 import { useTheme } from "@mui/material/styles";
 
+import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../Sidebar/Sidebar";
 import Search from "../Search/Search";
 import { createSessionId, fetchToken, moviesApi } from "../../utils";
-import { useDispatch, useSelector } from "react-redux";
 import { setUser, userSelector } from "../../features/auth";
+import useStyles from "./styles";
+
 const NavBar = () => {
   const { isAuthenticated, user } = useSelector(userSelector);
 
@@ -33,7 +34,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
 
   // const isAuthenticated = false;
-  console.log(user);
+  // console.log(user);
   const token = localStorage.getItem("request_token");
   const sessionIdFromStorage = localStorage.getItem("session_id");
 
@@ -89,7 +90,7 @@ const NavBar = () => {
                   className={classes.linkButton}
                   onClick={() => {}}
                 >
-                  {!isMobile && <>'My Movies' &nbsp;</>}
+                  {!isMobile && <> My Movies &nbsp;</>}
                   <Avatar
                     alt="Remy Sharp"
                     src="https://material-ui.com/static/images/avatar/1.jpg"

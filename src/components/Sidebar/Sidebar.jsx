@@ -12,13 +12,13 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
-import useStyles from "../styles";
-import { useGetGenresQuery } from "../../services/TMDB";
 import { useDispatch, useSelector } from "react-redux";
+import { useGetGenresQuery } from "../../services/TMDB";
 import currentGenorCat, {
   selectGenreOrCategory,
 } from "../../features/currentGenorCat";
 import genreIcons from "../../assets/genres";
+import useStyles from "../styles";
 
 const categories = [
   { label: "Popular", value: "popular" },
@@ -40,7 +40,7 @@ const Sidebar = ({ setMobileOpen }) => {
     (state) => state.currentGenreOrCategory
   );
   const { data, isFetching } = useGetGenresQuery();
-  console.log(genreIdOrCategoryName);
+  // console.log(genreIdOrCategoryName);
   useEffect(() => {}, []);
   return (
     <>
@@ -48,6 +48,7 @@ const Sidebar = ({ setMobileOpen }) => {
         <img
           className={classes.image}
           src={theme.palette.mode === "dark" ? blueLogo : redLogo}
+          alt="logo"
         />
       </Link>
       <Divider className={classes.divider} />
