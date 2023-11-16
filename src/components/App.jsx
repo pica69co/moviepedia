@@ -1,3 +1,4 @@
+import React, { useRef } from "react";
 import { CssBaseline } from "@mui/material";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Home from "./Movies/Movies";
@@ -7,10 +8,12 @@ import Actors from "./Actors/Actors";
 import Profile from "./Profile/Profile";
 import NavBar from "./NavBar/NavBar";
 import useStyles from "./styles";
+import useAlan from "./Alan";
 
 const App = () => {
   const classes = useStyles();
-
+  const alanBtnContainer = useRef();
+  useAlan();
   return (
     <BrowserRouter>
       <div className={classes.root}>
@@ -28,6 +31,7 @@ const App = () => {
             </>
           </Routes>
         </main>
+        <div ref={alanBtnContainer} />
       </div>
     </BrowserRouter>
   );
