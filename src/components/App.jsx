@@ -14,6 +14,7 @@ const App = () => {
   const classes = useStyles();
   const alanBtnContainer = useRef();
   useAlan();
+
   return (
     <BrowserRouter>
       <div className={classes.root}>

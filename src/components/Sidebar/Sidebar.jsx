@@ -41,7 +41,9 @@ const Sidebar = ({ setMobileOpen }) => {
   );
   const { data, isFetching } = useGetGenresQuery();
   // console.log(genreIdOrCategoryName);
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [genreIdOrCategoryName]);
   return (
     <>
       <Link to="/" className={classes.imageLink}>

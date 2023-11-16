@@ -96,8 +96,8 @@ const NavBar = () => {
                 >
                   {!isMobile && <> My Movies &nbsp;</>}
                   <Avatar
-                    alt="Remy Sharp"
-                    src="https://material-ui.com/static/images/avatar/1.jpg"
+                    alt="Profile"
+                    src={`https://www.themoviedb.org/t/p/w64_and_h64_face${user?.avatar?.tmdb?.avatar_path}`}
                     style={{ width: "30px", height: "30px" }}
                     className={classes.avatar}
                   />
@@ -131,7 +131,6 @@ const NavBar = () => {
             </Drawer>
           )}
         </nav>
-        º
       </div>
     </>
   );
