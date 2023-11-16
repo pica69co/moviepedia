@@ -8,7 +8,7 @@ import Profile from "./Profile/Profile";
 import NavBar from "./NavBar/NavBar";
 import useStyles from "./styles";
 
-function App() {
+const App = () => {
   const classes = useStyles();
 
   return (
@@ -21,9 +21,9 @@ function App() {
           <Routes>
             <>
               <Route path="/" element={<Movies />} />
-              <Route path="/approved?" element={<Movies />} />
+              <Route path="/approved}?" element={<Movies />} />
               <Route path="/movie/:id" element={<MovieInformation />} />
-              <Route path="/actor/:id" element={<Actors />} />
+              <Route path="/actors/:id" element={<Actors />} />
               <Route path="/profile/:id" element={<Profile />} />
             </>
           </Routes>
@@ -31,6 +31,6 @@ function App() {
       </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

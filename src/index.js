@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./components/App";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Provider } from "react-redux";
+import App from "./components/App";
 import store from "./app/store";
+import "./index.css";
 
 const theme = createTheme({});
 

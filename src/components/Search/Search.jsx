@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import useStyles from "./styles";
+import { useDispatch } from "react-redux";
 import { InputAdornment, TextField } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
-import { useDispatch } from "react-redux";
 import { searchMovie } from "../../features/currentGenorCat";
+import useStyles from "./styles";
+
 const Search = () => {
   const classes = useStyles();
   const [query, setQuery] = useState("");
