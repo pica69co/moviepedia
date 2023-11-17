@@ -36,24 +36,29 @@ const NavBar = () => {
   // const isAuthenticated = false;
   // console.log(user);
   const token = localStorage.getItem("request_token");
-  const sessionIdFromStorage = localStorage.getItem("session_id");
+  const sessionIdFromLocalStorage = localStorage.getItem("session_id");
 
   useEffect(() => {
     const logInUser = async () => {
-      if (token && sessionIdFromStorage) {
-        const { data: userData } = await moviesApi.get(
-          `/account?session_id=${sessionIdFromStorage}`
-        );
-        dispatch(setUser(userData));
-      } else {
-        const sessionId = await createSessionId();
+      if (token) {
+        if (sessionIdFromLocalStorage) {
+          const { data: userData } = await moviesApi.get(
+            `/account?session_id=${sessionIdFromLocalStorage}`
+          );
 
-        const { data: userData } = await moviesApi.get(
-          `/account?session_id=${sessionId}`
-        );
-        dispatch(setUser(userData));
+          dispatch(setUser(userData));
+        } else {
+          const sessionId = await createSessionId();
+
+          const { data: userData } = await moviesApi.get(
+            `/account?session_id=${sessionId}`
+          );
+
+          dispatch(setUser(userData));
+        }
       }
     };
+
     logInUser();
   }, [token]);
 
@@ -86,30 +91,27 @@ const NavBar = () => {
                 Login &nbsp; <AccountCircle />
               </Button>
             ) : (
-              <>
-                <Button
-                  color="inherit"
-                  component={Link}
-                  to={`/profile/${user.id}`}
-                  className={classes.linkButton}
-                  onClick={() => {}}
-                >
-                  {!isMobile && <> My Movies &nbsp;</>}
-                  <Avatar
-                    alt="Profile"
-                    src={`https://www.themoviedb.org/t/p/w64_and_h64_face${user?.avatar?.tmdb?.avatar_path}`}
-                    style={{ width: "30px", height: "30px" }}
-                    className={classes.avatar}
-                  />
-                </Button>
-              </>
+              <Button
+                color="inherit"
+                component={Link}
+                to={`/profile/${user.id}`}
+                className={classes.linkButton}
+                onClick={() => {}}
+              >
+                {!isMobile && <>My Movies &nbsp;</>}
+                <Avatar
+                  style={{ width: 30, height: 30 }}
+                  alt="Profile"
+                  src={`https://www.themoviedb.org/t/p/w64_and_h64_face${user?.avatar?.tmdb?.avatar_path}`}
+                />
+              </Button>
             )}
           </div>
           {isMobile && <Search />}
         </Toolbar>
       </AppBar>
       <div>
-        <nav>
+        <nav className={classes.drawer}>
           {isMobile ? (
             <Drawer
               variant="temporary"

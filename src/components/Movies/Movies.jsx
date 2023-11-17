@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+
 import {
   Box,
   CircularProgress,
   useMediaQuery,
   Typography,
 } from "@mui/material";
-import { useSelector } from "react-redux";
+
 import { useGetMoviesQuery } from "../../services/TMDB";
-import { selectGenreOrCategory } from "../../features/currentGenorCat";
+import FeaturedMovie from "../FeaturedMovie/FeaturedMovie";
 import Movielist from "../MovieList/Movielist";
 import Pagination from "../Pagination/Pagination";
-import FeaturedMovie from "../FeaturedMovie/FeaturedMovie";
 
 const Movies = () => {
   const [page, setPage] = useState(1);
@@ -26,7 +27,7 @@ const Movies = () => {
 
   const numberOfMovies = lg ? 17 : 19;
 
-  if (isFetching) {
+  if (isFetching || error) {
     return (
       <Box display="flex" alignItems="center" justifyContent="center">
         <CircularProgress size="4rem" />

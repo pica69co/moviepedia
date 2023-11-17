@@ -7,13 +7,14 @@ import {
 } from "../features/currentGenorCat";
 import { ColorModeContext } from "../utils/ToggleColorMode";
 import { fetchToken } from "../utils";
+import { useNavigate, useNavigation } from "react-router-dom";
 
 const alanKey = process.env.REACT_APP_ALAN_MOVIEPEDIA_KEY;
 
 const useAlan = () => {
   const { setMode } = useContext(ColorModeContext);
   const dispatch = useDispatch();
-  // const history = useHistory();
+  const history = useNavigate();
   useEffect(() => {
     alanBtn({
       key: alanKey,
@@ -24,13 +25,13 @@ const useAlan = () => {
           );
 
           if (foundGenre) {
-            // history.push("/");
+            history(-1);
             dispatch(selectGenreOrCategory(foundGenre.id));
           } else {
             const category = genreOrCategory.startsWith("top")
               ? "top_rated"
               : genreOrCategory;
-            // history.push("/");
+            history("/");
             dispatch(selectGenreOrCategory(category));
           }
         } else if (command === "changeMode") {

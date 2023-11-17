@@ -1,16 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import ToggleColorModeProvider from "./utils/ToggleColorMode";
-import App from "./components/App";
 import store from "./app/store";
+import ToggleColorModeProvider from "./utils/ToggleColorMode";
+import { BrowserRouter } from "react-router-dom";
+import App from "./components/App";
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <ToggleColorModeProvider>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ToggleColorModeProvider>
   </Provider>
 );

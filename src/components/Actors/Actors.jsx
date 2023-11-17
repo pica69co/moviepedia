@@ -33,7 +33,7 @@ const Actors = () => {
       <Box display="flex" justifyContent="center" alignItems="center">
         <Button
           startIcon={<ArrowBack />}
-          onClick={() => history.goBack()}
+          onClick={() => history(-1)}
           color="primary"
         >
           Go back
@@ -81,7 +81,7 @@ const Actors = () => {
             </Button>
             <Button
               startIcon={<ArrowBack />}
-              onClick={() => history.goBack()}
+              onClick={() => history(-1)}
               color="primary"
             >
               Back

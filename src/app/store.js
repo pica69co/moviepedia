@@ -14,6 +14,6 @@ const store = configureStore({
     getDefaultMiddleware().concat(tmdbApi.middleware),
 });
 
-setupListeners(store.dispatch);
+// setupListeners(store.dispatch);
 
 export default store;

@@ -14,11 +14,11 @@ import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetGenresQuery } from "../../services/TMDB";
-import currentGenorCat, {
-  selectGenreOrCategory,
-} from "../../features/currentGenorCat";
+import { selectGenreOrCategory } from "../../features/currentGenorCat";
 import genreIcons from "../../assets/genres";
-import useStyles from "../styles";
+import useStyles from "./styles";
+import redLogo from "../../assets/images/redlogo.png";
+import blueLogo from "../../assets/images/blueLogo.png";
 
 const categories = [
   { label: "Popular", value: "popular" },
@@ -26,11 +26,11 @@ const categories = [
   { label: "Upcoming", value: "upcoming" },
 ];
 
-const redLogo =
-  "https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png";
+// const redLogo =
+// "https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png";
 
-const blueLogo =
-  "https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png";
+// const blueLogo =
+// "https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png";
 
 const Sidebar = ({ setMobileOpen }) => {
   const theme = useTheme();
@@ -44,43 +44,39 @@ const Sidebar = ({ setMobileOpen }) => {
   useEffect(() => {
     setMobileOpen(false);
   }, [genreIdOrCategoryName]);
+
   return (
     <>
       <Link to="/" className={classes.imageLink}>
         <img
           className={classes.image}
-          src={theme.palette.mode === "dark" ? blueLogo : redLogo}
-          alt="logo"
+          src={theme.palette.mode === "light" ? blueLogo : redLogo}
+          alt="Filmpire logo"
         />
       </Link>
-      <Divider className={classes.divider} />
+
+      <Divider />
       <List>
         <ListSubheader>Categories</ListSubheader>
-        {isFetching ? (
-          <Box display="flex" justifyContent="center">
-            <CircularProgress />
-          </Box>
-        ) : (
-          categories.map(({ label, value }) => (
-            <Link Link key={value} className={classes.links} to="/">
-              <ListItemButton
-                onClick={() => dispatch(selectGenreOrCategory(value))}
-                button
-              >
-                <ListItemIcon>
-                  <img
-                    src={genreIcons[label.toLowerCase()]}
-                    className={classes.genreImage}
-                    height={30}
-                  />
-                </ListItemIcon>
-                <ListItemText primary={label} />
-              </ListItemButton>
-            </Link>
-          ))
-        )}
+        {categories.map(({ label, value }) => (
+          <Link key={value} className={classes.links} title={value} to="/">
+            <ListItem
+              onClick={() => dispatch(selectGenreOrCategory(value))}
+              button
+            >
+              <ListItemIcon>
+                <img
+                  src={genreIcons[label.toLowerCase()]}
+                  className={classes.genreImage}
+                  height={30}
+                />
+              </ListItemIcon>
+              <ListItemText primary={label} />
+            </ListItem>
+          </Link>
+        ))}
       </List>
-      <Divider className={classes.divider} />
+      <Divider />
       <List>
         <ListSubheader>Genres</ListSubheader>
         {isFetching ? (
@@ -89,8 +85,11 @@ const Sidebar = ({ setMobileOpen }) => {
           </Box>
         ) : (
           data.genres.map(({ name, id }) => (
-            <Link key={name} className={classes.links} to="/">
-              <ListItem onClick={() => dispatch(selectGenreOrCategory(id))}>
+            <Link key={name} className={classes.links} title={name} to="/">
+              <ListItem
+                onClick={() => dispatch(selectGenreOrCategory(id))}
+                button
+              >
                 <ListItemIcon>
                   <img
                     src={genreIcons[name.toLowerCase()]}
@@ -103,6 +102,23 @@ const Sidebar = ({ setMobileOpen }) => {
             </Link>
           ))
         )}
+        <Link
+          to="https://my-portfolio-swart-psi.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h5
+            style={{
+              justifyContent: "center",
+              textAlign: "center",
+              fontWeight: "bold",
+              color: "Chocolate",
+            }}
+            title="Oscar Arrieta"
+          >
+            {`{OA}`} &copy; 2023
+          </h5>{" "}
+        </Link>
       </List>
     </>
   );
